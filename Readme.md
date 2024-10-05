@@ -48,22 +48,22 @@ Here's an overview of the project's structure:
 api_with_mongo/
 ├── src/
 │   ├── handlers/
-│   │   ├── mod.rs  
-│   │   ├── auth.rs               # Authentication logic
-│   │   ├── profile.rs            # Profile management logic
-│   │   └── reset_password.rs      # Password reset logic
+│   │   ├── mod.rs
+│   │   ├── auth.rs           # Authentication logic
+│   │   ├── profile.rs        # Profile management logic
+│   │   └── reset_password.rs # Password reset logic
 │   ├── models/
-│   │   ├── mod.rs               # User data model
-│   │   └── users.rs             # Other data model (if needed)
+│   │   ├── mod.rs            # User data model
+│   │   └── users.rs          # Other data model (if needed)
 │   ├── routes/
-│   │   ├── auth_routes.rs        # Authentication route definitions
-│   │   ├── profile_routes.rs      # Profile route definitions
-│   │   └── mod.rs                # General route definitions
-│   ├── db.rs                      # Database connection and setup
-│   ├── main.rs                    # Entry point of the application
-├── .env                           # Environment variables
-├── Cargo.toml                     # Project dependencies
-└── README.md                      # Project documentation
+│   │   ├── auth_routes.rs    # Authentication route definitions
+│   │   ├── profile_routes.rs # Profile route definitions
+│   │   └── mod.rs            # General route definitions
+│   ├── db.rs                 # Database connection and setup
+│   └── main.rs               # Entry point of the application
+├── .env                      # Environment variables
+├── Cargo.toml                # Project dependencies
+└── README.md                 # Project documentation
 ```
 
 ### Description of Files
