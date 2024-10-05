@@ -239,10 +239,3 @@ If you encounter any issues, consider the following:
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 ```
-
-### Final Touches
-
-- Copy and paste this code directly into your `README.md` file on your GitHub repository.
-- Make sure to adjust the placeholders (like `your-username`, `your_jwt_secret_here`, etc.) with your actual data before committing.
-
-This format should display nicely on GitHub, making it easier for users to read and understand how to use your project.
