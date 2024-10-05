@@ -1,3 +1,6 @@
+Here’s a more readable and correctly formatted version of your README that should render properly on GitHub:
+
+```markdown
 # Authentication API with Actix Web and MongoDB
 
 Welcome to the Authentication API project! This API is built using **Actix Web** and **MongoDB**, providing a seamless way to handle user authentication, profile management, and password resets.
@@ -41,6 +44,7 @@ Before you start, make sure you have the following installed:
 
 Here's an overview of the project's structure:
 
+```
 api_with_mongo/
 ├── src/
 │   ├── handlers/
@@ -50,7 +54,7 @@ api_with_mongo/
 │   │   └── reset_password.rs      # Password reset logic
 │   ├── models/
 │   │   ├── mod.rs               # User data model
-│   │   └── users.rs         # Other data model (if needed)
+│   │   └── users.rs             # Other data model (if needed)
 │   ├── routes/
 │   │   ├── auth_routes.rs        # Authentication route definitions
 │   │   ├── profile_routes.rs      # Profile route definitions
@@ -60,8 +64,7 @@ api_with_mongo/
 ├── .env                           # Environment variables
 ├── Cargo.toml                     # Project dependencies
 └── README.md                      # Project documentation
-
-
+```
 
 ### Description of Files
 
@@ -81,173 +84,165 @@ Start by cloning the project repository to your local machine:
 ```bash
 git clone https://github.com/your-username/api_with_mongo.git
 cd api_with_mongo
+```
 
+### Step 2: Configure the Environment
 
-Step 2: Configure the Environment
+Create a `.env` file in the root of your project directory with the following content:
 
-Create a .env file in the root of your project directory with the following content:
-
-dotenv
-
+```env
 JWT_SECRET=your_jwt_secret_here
 DATABASE_URL=mongodb://localhost:27017/your_database_name
 EMAIL_USERNAME=your-email@gmail.com
 EMAIL_PASSWORD=your-16-character-app-password
+```
 
-
-Step 3: Install Dependencies
+### Step 3: Install Dependencies
 
 Run the following command to build and install the project dependencies:
 
-bash
-
+```bash
 cargo build
+```
 
-Running the Application
+## Running the Application
 
 To start the Actix Web server, run:
 
-bash
-
+```bash
 cargo run
+```
 
-The server will be accessible at http://localhost:8000.
-API Endpoints
+The server will be accessible at `http://localhost:8000`.
+
+## API Endpoints
 
 Here’s a quick overview of the available API endpoints:
-1. User Registration
 
-    Endpoint: POST /signup
-    Request Body:
+1. **User Registration**
 
-json
+    - **Endpoint**: `POST /signup`
+    - **Request Body**:
+      ```json
+      {
+          "username": "exampleUser",
+          "email": "example@example.com",
+          "password": "yourPassword"
+      }
+      ```
+    - **Response**: `"User registered successfully"`
 
-{
-    "username": "exampleUser",
-    "email": "example@example.com",
-    "password": "yourPassword"
-}
+2. **User Login**
 
-    Response: "User registered successfully"
+    - **Endpoint**: `POST /login`
+    - **Request Body**:
+      ```json
+      {
+          "email": "example@example.com",
+          "password": "yourPassword"
+      }
+      ```
+    - **Response**:
+      ```json
+      {
+          "token": "your_jwt_token"
+      }
+      ```
 
-2. User Login
+3. **Get User Profile**
 
-    Endpoint: POST /login
-    Request Body:
+    - **Endpoint**: `GET /profile/{user_id}`
+    - **Headers**:
+      ```
+      Authorization: Bearer your_jwt_token
+      ```
+    - **Response**:
+      ```json
+      {
+          "id": "user_id",
+          "username": "exampleUser",
+          "email": "example@example.com"
+      }
+      ```
 
-json
+4. **Edit User Profile**
 
-{
-    "email": "example@example.com",
-    "password": "yourPassword"
-}
+    - **Endpoint**: `PUT /profile/{user_id}`
+    - **Headers**:
+      ```
+      Authorization: Bearer your_jwt_token
+      ```
+    - **Request Body**:
+      ```json
+      {
+          "username": "newUsername",
+          "email": "new@example.com"
+      }
+      ```
+    - **Response**: `"Profile updated successfully"`
 
-    Response:
+5. **Delete User Account**
 
-json
+    - **Endpoint**: `DELETE /profile/{user_id}`
+    - **Headers**:
+      ```
+      Authorization: Bearer your_jwt_token
+      ```
+    - **Response**: `"Account deleted successfully"`
 
-{
-    "token": "your_jwt_token"
-}
+6. **Forgot Password**
 
-3. Get User Profile
+    - **Endpoint**: `POST /forgot_password`
+    - **Request Body**:
+      ```json
+      {
+          "email": "example@example.com"
+      }
+      ```
+    - **Response**: `"Password reset link sent to your email"`
 
-    Endpoint: GET /profile/{user_id}
-    Headers:
+7. **Reset Password**
 
-plaintext
+    - **Endpoint**: `POST /reset_password`
+    - **Request Body**:
+      ```json
+      {
+          "token": "your_jwt_token",
+          "new_password": "yourNewPassword"
+      }
+      ```
+    - **Response**: `"Password reset successfully"`
 
-Authorization: Bearer your_jwt_token
-
-    Response:
-
-json
-
-{
-    "id": "user_id",
-    "username": "exampleUser",
-    "email": "example@example.com"
-}
-
-4. Edit User Profile
-
-    Endpoint: PUT /profile/{user_id}
-    Headers:
-
-plaintext
-
-Authorization: Bearer your_jwt_token
-
-    Request Body:
-
-json
-
-{
-    "username": "newUsername",
-    "email": "new@example.com"
-}
-
-    Response: "Profile updated successfully"
-
-5. Delete User Account
-
-    Endpoint: DELETE /profile/{user_id}
-    Headers:
-
-plaintext
-
-Authorization: Bearer your_jwt_token
-
-    Response: "Account deleted successfully"
-
-6. Forgot Password
-
-    Endpoint: POST /forgot_password
-    Request Body:
-
-json
-
-{
-    "email": "example@example.com"
-}
-
-    Response: "Password reset link sent to your email"
-
-7. Reset Password
-
-    Endpoint: POST /reset_password
-    Request Body:
-
-json
-
-{
-    "token": "your_jwt_token",
-    "new_password": "yourNewPassword"
-}
-
-    Response: "Password reset successfully"
-
-Testing the API
+## Testing the API
 
 You can test the API endpoints using tools like Postman or cURL. Make sure to send the correct headers and request bodies as specified above.
-Example cURL Command
+
+### Example cURL Command
 
 To test the signup endpoint, you can use the following command:
 
-bash
-
+```bash
 curl -X POST http://localhost:8000/signup \
 -H "Content-Type: application/json" \
 -d '{"username": "exampleUser", "email": "example@example.com", "password": "yourPassword"}'
+```
 
-Troubleshooting
+## Troubleshooting
 
 If you encounter any issues, consider the following:
 
-    Make sure your MongoDB server is running and accessible.
-    Double-check the contents of your .env file for accuracy.
-    Look at the terminal for any error messages that might indicate the problem.
+- Make sure your MongoDB server is running and accessible.
+- Double-check the contents of your `.env` file for accuracy.
+- Look at the terminal for any error messages that might indicate the problem.
 
-License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+```
+
+### Final Touches
+
+- Copy and paste this code directly into your `README.md` file on your GitHub repository.
+- Make sure to adjust the placeholders (like `your-username`, `your_jwt_secret_here`, etc.) with your actual data before committing.
+
+This format should display nicely on GitHub, making it easier for users to read and understand how to use your project.
